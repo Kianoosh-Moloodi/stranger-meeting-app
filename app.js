@@ -12,9 +12,19 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/public/index.html');
 });
 
+let connectedPeers = [];
+
 io.on('connection', (socket) => {
-  console.log('Socket IO is working');
-  console.log(socket.id);
+  connectedPeers.push(socket.id);
+  console.log(connectedPeers);
+
+  socket.on('disconnect', () => {
+    const newConnectedPeers = connectedPeers.filter((peerSocketId) => {
+      return peerSocketId !== socket.id;
+    });
+    connectedPeers = newConnectedPeers;
+    console.log(connectedPeers);
+  });
 });
 
 server.listen(PORT, () => {
