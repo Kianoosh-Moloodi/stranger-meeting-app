@@ -1,0 +1,382 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed&display=swap');
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+body {
+  line-height: 1;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+input:focus {
+  outline: none;
+}
+
+.main_container {
+  display: grid;
+  grid-template-columns: 3fr 9fr;
+  height: 100vh;
+}
+
+.leftside_container {
+  background-color: gray;
+  grid-column: 1;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  padding-left: 0.7rem;
+  padding-right: 0.7rem;
+}
+
+.dashboard_container {
+  grid-template-columns: 1;
+}
+
+.logo {
+  font-family: 'Raleway', sans-serif;
+  text-align: center;
+  color: aliceblue;
+  font-size: 2rem;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.logo_subline {
+  font-family: 'Barlow Condensed', sans-serif;
+  color: antiquewhite;
+  text-align: center;
+  margin: 5px 0 20px 0;
+  font-size: 1.1rem;
+}
+.personal_code_container {
+  display: grid;
+  grid-template-columns: 10fr 2fr;
+  align-items: center;
+  margin: 10px 0 10px 0;
+}
+
+.personal_code_text {
+  background-color: yellow;
+  padding: 9px 0 9px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 0.9rem;
+  border-radius: 10px 0 0 10px;
+}
+
+.personal_code_span {
+  margin-left: 0.3rem;
+  font-size: 1.5rem;
+}
+
+.personal_code_copy_icon {
+  background-color: blue;
+  padding: 13px 0 12px 0;
+  display: flex;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 0 10px 10px 0;
+  color: aliceblue;
+}
+
+.rightside_container {
+  grid-column: 2;
+}
+
+.personal_code_input_container {
+  display: grid;
+  grid-template-columns: 10fr 2fr;
+  align-items: center;
+  margin: 10px 0 10px 0;
+}
+
+.personal_code_input {
+  background-color: yellow;
+  padding: 9px 0 9px 0;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-size: 1.2rem;
+  border-radius: 10px 0 0 10px;
+  border: none;
+}
+
+input[class='personal_code_input']::placeholder {
+  color: black;
+  text-align: center;
+  font-size: 1rem;
+}
+
+input[class='personal_code_input'] {
+  text-align: center;
+}
+
+.personal_code_input_button {
+  background-color: blue;
+  padding: 13px 0 12px 0;
+  display: flex;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  border-radius: 0 10px 10px 0;
+  color: aliceblue;
+  border: none;
+}
+
+.chatsection_container {
+  margin: 15px 0 15px 0;
+  background-color: blue;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.videos_container {
+  position: relative;
+  height: 100%;
+  background: black;
+}
+
+.videos_placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  color: white;
+}
+
+.remote_video {
+  width: 100%;
+  height: 100%;
+}
+
+.local_video_container {
+  position: absolute;
+  width: 180px;
+  height: 180px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 10px;
+  background: rgba(196, 196, 196, 0.2);
+  top: 15px;
+  right: 15px;
+}
+
+.local_video {
+  width: 100%;
+  height: 100%;
+}
+
+.call_buttons_container {
+  position: absolute;
+  width: 395px;
+  height: 30px;
+  bottom: 30px;
+  left: calc(50% - 200px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.096);
+  padding: 20px 20px;
+  border-radius: 15px;
+  gap: 30px;
+}
+
+.video_recording_buttons_container {
+  position: absolute;
+  width: 165px;
+  height: 30px;
+  background: rgba(255, 255, 255, 0.137);
+  border-radius: 10px;
+  backdrop-filter: blur(60px);
+  right: 15px;
+  padding: 10px 10px;
+  top: 220px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.call_button_small {
+  width: 40px;
+  height: 40px;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.315);
+  transition: 0.3s;
+}
+.call_button_small:hover {
+  background-color: white;
+}
+
+.call_button_large {
+  width: 50px;
+  height: 50px;
+  border-radius: 75px;
+  background-color: rgba(255, 0, 0, 0.288);
+  transition: 0.3s;
+}
+
+.call_button_large:hover {
+  background-color: red;
+}
+
+.record_button {
+  width: 30px;
+  height: 30px;
+  font-size: 11px;
+  border-radius: 75px;
+  background-color: rgba(255, 255, 255, 0.288);
+  transition: 0.3s;
+}
+
+.record_button:hover {
+  background-color: white;
+}
+
+.display_none {
+  display: none;
+}
+
+.dialog_wrapper {
+  position: fixed;
+  z-index: 30;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(30px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0;
+  top: 0;
+}
+
+.dialog_content {
+  width: 520px;
+  height: 430px;
+  background: black;
+  border: 3px solid yellow;
+  box-shadow: 0px 2px 20px 5px rgba(10, 145, 219, 0.05);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.dashboard_blur {
+  display: none;
+}
+
+.messages_container {
+  flex-grow: 1;
+  margin: 40px 30px;
+  overflow-y: scroll;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+    color: red;
+  }
+  100% {
+    transform: scale(1.4);
+  }
+}
+
+.copy_button_click_effect {
+  animation: pulse 0.2s ease-in-out 1;
+}

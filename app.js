@@ -18,10 +18,48 @@ io.on('connection', (socket) => {
   connectedPeers.push(socket.id);
   console.log(connectedPeers);
 
+  socket.on('pre-offer', (data) => {
+    const { calleePersonalCode, callType } = data;
+    const connectedPeer = connectedPeers.find(
+      (peerSocketId) => peerSocketId === calleePersonalCode
+    );
+    if (connectedPeer) {
+      const data = {
+        callerSocketId: socket.id,
+        callType,
+      };
+      io.to(calleePersonalCode).emit('pre-offer', data);
+    } else {
+      const data = {
+        preOfferAnswer: 'CALLEE_NOT_FOUND',
+      };
+      io.to(socket.id).emit('pre-offer-answer', data);
+    }
+  });
+
+  socket.on('pre-offer-answer', (data) => {
+    const connectedPeer = connectedPeers.find(
+      (peerSocketId) => peerSocketId === data.callerSocketId
+    );
+    if (connectedPeer) {
+      io.to(data.callerSocketId).emit('pre-offer-answer', data);
+    }
+  });
+
+  socket.on('webRTC-signals', (data) => {
+    const { connectedUserSocketId } = data;
+    const connectedPeer = connectedPeers.find(
+      (peerSocketId) => peerSocketId === connectedUserSocketId
+    );
+    if (connectedPeer) {
+      io.to(connectedUserSocketId).emit('webRTC-signals', data);
+    }
+  });
+
   socket.on('disconnect', () => {
-    const newConnectedPeers = connectedPeers.filter((peerSocketId) => {
-      return peerSocketId !== socket.id;
-    });
+    const newConnectedPeers = connectedPeers.filter(
+      (peerSocketId) => peerSocketId !== socket.id
+    );
     connectedPeers = newConnectedPeers;
     console.log(connectedPeers);
   });

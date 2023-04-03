@@ -4,114 +4,125 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Stranger Video Call Web App</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
-      crossorigin="anonymous"
-    />
     <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+      src="https://kit.fontawesome.com/e495f02f3a.js"
       crossorigin="anonymous"
     ></script>
-    <script src="https://kit.fontawesome.com/e495f02f3a.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./style/app.css" />
+    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="icon" href="data:," />
+    <title>Document</title>
   </head>
   <body>
-    <section class="container-fluid">
-      <div class="row">
-        <div class="col-3 bg-black">
-          <div class="row">
-            <div class="my-2">
-              <p class="logo fs-4 text-white text-center">Stranger Meeting Video Call Web App</p>
-            </div>
-            <div>
-              <p class="text-white text-center">Start Connectiong by Passing Personal Code Below</p>
-              <div class="d-flex bg-success rounded text-white justify-content-center align-items-center">
-                <div class="me-3 fs-4" id="personal_code_paragrapth">D45814GV6554SD</div>
-                <i class="fa-solid fa-copy" id="personal_code_copy_button"></i>
-              </div>
-            </div>
-            <div>
-              <div class="input-group my-3">
-                <input class="form-control" id="personal_code_input" placeholder="Enter Personal Code" />
-                <button class="btn btn-success" id="personal_code_video_button">Connect</button>
-              </div>
-            </div>
-            <div class="d-grid mt-3">
-              <div class="form-check form-switch my-2">
-                <input class="form-check-input" type="checkbox" id="allow_strangers_checkbox" />
-                <label class="form-check-label text-white" for="flexSwitchCheckDefault"
-                  >Allow to receive calls from strangers</label
-                >
-              </div>
-              <button class="btn btn-primary" id="stranger_video_buttons" type="button">
-                Connect to a Random Person
-              </button>
-            </div>
+    <div class="main_container">
+      <div class="leftside_container">
+        <div class="dashboard_container" id="dashboard_blur">
+          <p class="logo">Video Call WebApp</p>
+          <p class="logo_subline">
+            To make a video call, <br />
+            you must have the private code of your contact.
+          </p>
+          <div class="personal_code_container">
+            <p class="personal_code_text">
+              Your Code:
+              <span class="personal_code_span" id="personal_code_paragrapth"
+                >D6516Adgasdf</span
+              >
+            </p>
+
+            <i
+              class="fa-solid fa-copy personal_code_copy_icon"
+              id="personal_code_copy_button"
+            ></i>
           </div>
-          <div class="row my-5">
-            <span class="text-center text-white"
-              >------------------------ <br />
-              Here is the Chat Section <br />
-              ------------------------</span
+          <div class="personal_code_input_container">
+            <input
+              class="personal_code_input"
+              id="personal_code_input"
+              placeholder="Enter Your Contact Code"
+            />
+            <button
+              class="personal_code_input_button"
+              id="personal_code_video_button"
             >
-          </div>
-          <div class="row bg-danger">
-            <div class="messages_container" id="messages_container"></div>
-            <div class="new_message_container display_none" id="new_message">
-              <input class="new_message_input" id="new_message_input" placeholder="Write Your Message" />
-              <button class="send_message_button" id="send_message_button">
-                <i class="fa-solid fa-arrow-right"></i>
-              </button>
-            </div>
+              <i class="fa-solid fa-phone-volume"></i>
+            </button>
           </div>
         </div>
-        <div class="col-9 bg-primary">
-          <div class="videos_container">
-            <div id="videos_placeholder" class="videos_placeholder">
-              <i class="fa-solid fa-tower-cell text-white"> No Signal</i>
-            </div>
-            <video class="remote_video display_none" autoplay id="remote_video"></video>
-            <div class="local_video_container">
-              <video class="local_video" id="local_video" muted autoplay></video>
-            </div>
-            <div class="call_buttons_container display_none" id="call_buttons">
-              <button class="call_button_small" id="mic_button">
-                <i class="fa-solid fa-microphone fs-6" id="mic_button_image"></i>
-              </button>
-              <button class="call_button_small" id="camera_button">
-                <i class="fa-solid fa-camera fs-6" id="camera_button_image"></i>
-              </button>
-              <button class="call_button_large" id="hang_up_button">
-                <i class="fa-solid fa-phone-slash fs-5"></i>
-              </button>
-              <button class="call_button_small" id="screen_sharing_button">
-                <i class="fa-solid fa-share-nodes fs-6"></i>
-              </button>
-              <button class="call_button_small" id="start_recording_button">
-                <i class="fa-solid fa-record-vinyl fs-6"></i>
-              </button>
-            </div>
-            <div class="video_recording_buttons_container display_none" id="video_recording_buttons">
-              <button class="record_button" id="pause_recording_button">
-                <i class="fa-solid fa-pause"></i>
-              </button>
-              <button class="record_button display_none" id="resume_recording_button">
-                <i class="fa-solid fa-play"></i>
-              </button>
-              <button class="record_button" id="stop_recording_button">
-                <i class="fa-solid fa-stop"></i>
-              </button>
-            </div>
+        <div class="chatsection_container">
+            <div class="row bg-danger">
+                <div class="messages_container" id="messages_container"></div>
+                <div class="new_message_container display_none" id="new_message">
+                  <input
+                    class="new_message_input"
+                    id="new_message_input"
+                    placeholder="Write Your Message"
+                  />
+                  <button class="send_message_button" id="send_message_button">
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </button>
+                </div>
+              </div>
+        </div>
+      </div>
+      <div class="rightside_container">
+        <div class="videos_container">
+          <div id="videos_placeholder" class="videos_placeholder">
+            <i class="fa-solid fa-tower-cell text-white"> No Signal</i>
+          </div>
+          <video
+            class="remote_video display_none"
+            muted
+            autoplay
+            id="remote_video"
+          ></video>
+          <div class="local_video_container">
+            <video class="local_video" id="local_video" muted autoplay></video>
+          </div>
+          <div class="call_buttons_container display_none" id="call_buttons">
+            <button class="call_button_small" id="mic_button">
+              <i class="fa-solid fa-microphone fs-6" id="mic_button_image"></i>
+            </button>
+            <button class="call_button_small" id="camera_button">
+              <i class="fa-solid fa-camera fs-6" id="camera_button_image"></i>
+            </button>
+            <button class="call_button_large" id="hang_up_button">
+              <i class="fa-solid fa-phone-slash fs-5"></i>
+            </button>
+            <button class="call_button_small" id="screen_sharing_button">
+              <i class="fa-solid fa-share-nodes fs-6"></i>
+            </button>
+            <button class="call_button_small" id="start_recording_button">
+              <i class="fa-solid fa-record-vinyl fs-6"></i>
+            </button>
+          </div>
+          <div
+            class="video_recording_buttons_container display_none"
+            id="video_recording_buttons"
+          >
+            <button class="record_button" id="pause_recording_button">
+              <i class="fa-solid fa-pause"></i>
+            </button>
+            <button
+              class="record_button display_none"
+              id="resume_recording_button"
+            >
+              <i class="fa-solid fa-play"></i>
+            </button>
+            <button class="record_button" id="stop_recording_button">
+              <i class="fa-solid fa-stop"></i>
+            </button>
           </div>
         </div>
       </div>
-    </section>
+      <div id="dialog"></div>
+    </div>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="./js/elements.js" type="module"></script>
+    <script src="./js/constants.js" type="module"></script>
+    <script src="./js/ui.js" type="module"></script>
+    <script src="./js/wss.js" type="module"></script>
     <script src="./js/store.js" type="module"></script>
+    <script src="./js/webRTC.js" type="module"></script>
     <script src="./js/main.js" type="module"></script>
   </body>
 </html>
