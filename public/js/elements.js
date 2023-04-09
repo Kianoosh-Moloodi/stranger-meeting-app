@@ -15,35 +15,21 @@ export const getIncomingCallDialog = (
 
   const title = document.createElement('p');
   title.classList.add('dialog_title');
-  title.innerHTML = `<div class='text-center'><p class='fs-3 text-white'>Incoming Call From</p> <p class='text-white'>${callTypeInfo}</p><div/>`;
+  title.innerHTML = `<div><p>Incoming Call From</p><p>${callTypeInfo}</p><div/>`;
 
   const buttonContainer = document.createElement('div');
-  buttonContainer.classList.add('d-flex', 'gap-5');
+  buttonContainer.classList.add('dialog_button_container');
 
   const acceptCallButton = document.createElement('button');
-  acceptCallButton.classList.add(
-    'btn',
-    'btn-success',
-    'd-flex',
-    'align-items-center',
-    'justify-content-center',
-    'px-5'
-  );
+  acceptCallButton.classList.add('dialog_accept_call_button');
   acceptCallButton.innerHTML =
-    '<div class="fa-solid fa-phone me-2"></div> <div class="fs-4">Accept</div>';
+    '<div class="fa-solid fa-phone"></div> <div>Accept</div>';
   buttonContainer.appendChild(acceptCallButton);
 
   const rejectCallButton = document.createElement('button');
-  rejectCallButton.classList.add(
-    'btn',
-    'btn-danger',
-    'd-flex',
-    'align-items-center',
-    'justify-content-center',
-    'px-5'
-  );
+  rejectCallButton.classList.add('dialog_reject_call_button');
   rejectCallButton.innerHTML =
-    '<div class="fa-solid fa-phone-slash me-2"></div> <div class="fs-4">Reject</div>';
+    '<div class="fa-solid fa-phone-slash"></div> <div>Reject</div>';
   buttonContainer.appendChild(rejectCallButton);
   dialogContent.appendChild(title);
   dialogContent.appendChild(buttonContainer);
@@ -69,22 +55,15 @@ export const getCallingDialog = (rejectCallHandler) => {
 
   const title = document.createElement('p');
   title.classList.add('dialog_title');
-  title.innerHTML = `<p class='fs-3 text-white'>Calling ...</p>`;
+  title.innerHTML = `<p>Calling ...</p>`;
 
   const buttonContainer = document.createElement('div');
-  buttonContainer.classList.add('d-flex', 'gap-5');
+  buttonContainer.classList.add('dialog_button_container');
 
   const hangUpCallButton = document.createElement('button');
-  hangUpCallButton.classList.add(
-    'btn',
-    'btn-danger',
-    'd-flex',
-    'align-items-center',
-    'justify-content-center',
-    'px-5'
-  );
+  hangUpCallButton.classList.add('dialog_reject_call_button');
   hangUpCallButton.innerHTML =
-    '<div class="fa-solid fa-phone-slash me-2"></div> <div class="fs-4">Cancel</div>';
+    '<div class="fa-solid fa-phone-slash"></div> <div>Cancel</div>';
 
   buttonContainer.appendChild(hangUpCallButton);
 
@@ -105,7 +84,7 @@ export const getInfoDialog = (dialogtitle, descriptionText) => {
 
   const title = document.createElement('p');
   title.classList.add('dialog_title');
-  title.innerHTML = ` <div class='text-center'> <p class='fs-3 text-white'>${dialogtitle}</p> <p class='fs-4 text-warning'>${descriptionText}<p/> <div/>`;
+  title.innerHTML = ` <div> <p>${dialogtitle}</p> <p>${descriptionText}<p/> <div/>`;
   dialogContent.appendChild(title);
 
   return dialog;
