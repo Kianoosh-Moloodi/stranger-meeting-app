@@ -5,6 +5,8 @@ import * as store from './store.js';
 
 let connectedUserDetails;
 let peerConnection;
+let dataChannel;
+
 const defaulConstraints = {
   audio: true,
   video: true,
@@ -32,6 +34,18 @@ export const getLocalPreview = () => {
 
 const createPeerConnection = () => {
   peerConnection = new RTCPeerConnection(configuration);
+  dataChannel = peerConnection.createDataChannel('chat');
+  peerConnection.ondatachannel = (e) => {
+    const dataChannel = e.channel;
+    dataChannel.onopen = () => {
+      console.log('peer connection is ready to receive data');
+    };
+    dataChannel.onmessage = (e) => {
+      console.log('message came from data channel');
+      const message = JSON.parse(e.data);
+      ui.appendMessage(message);
+    };
+  };
   peerConnection.onicecandidate = (e) => {
     console.log('getting ice canditates from stun server');
     if (e.candidate) {
@@ -44,7 +58,8 @@ const createPeerConnection = () => {
   };
   peerConnection.onconnectionstatechange = (e) => {
     if (peerConnection.connectionState === 'connected') {
-      console.log('Successfuöy connected to other peer');
+      console.log('Successfully connected to other peer');
+      ui.unlockChatSection();
     }
   };
   const remoteStream = new MediaStream();
@@ -61,6 +76,11 @@ const createPeerConnection = () => {
       peerConnection.addTrack(track, localStream);
     }
   }
+};
+
+export const sendMessageUsingDataChannel = (message) => {
+  const stringifiedMessage = JSON.stringify(message);
+  dataChannel.send(stringifiedMessage);
 };
 
 export const sendPreOffer = (callType, calleePersonalCode) => {
@@ -169,5 +189,50 @@ export const handleWebRTCCandidate = async (data) => {
       'error occured when trying to add recived ice candidates',
       error
     );
+  }
+};
+
+let screenSharingStream;
+
+export const switchBetweenCameraAndScreenSharing = async (
+  screenSharingActive
+) => {
+  if (screenSharingActive) {
+    const localStream = store.getState().localStream;
+    const senders = peerConnection.getSenders();
+    const sender = senders.find((sender) => {
+      return sender.track.kind === localStream.getVideoTracks()[0].kind;
+    });
+    if (sender) {
+      sender.replaceTrack(localStream.getVideoTracks()[0]);
+    }
+    store
+      .getState()
+      .screenSharingStream.getTracks()
+      .forEach((track) => track.stop());
+    store.setScreenSharingActive(!screenSharingActive);
+    ui.updateLocalVideo(localStream);
+  } else {
+    console.log('Switching for Screen Sharing');
+    try {
+      screenSharingStream = await navigator.mediaDevices.getDisplayMedia({
+        video: true,
+      });
+      store.setScreenSharingStream(screenSharingStream);
+      const senders = peerConnection.getSenders();
+      const sender = senders.find((sender) => {
+        return (
+          sender.track.kind === screenSharingStream.getVideoTracks()[0].kind
+        );
+      });
+      if (sender) {
+        sender.replaceTrack(screenSharingStream.getVideoTracks()[0]);
+      }
+      store.setScreenSharingActive(!screenSharingActive);
+      ui.updateLocalVideo(screenSharingStream);
+    } catch (error) {
+      console.log('error occured');
+      console.log(error);
+    }
   }
 };

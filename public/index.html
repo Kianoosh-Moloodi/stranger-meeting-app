@@ -22,11 +22,8 @@
             you must have the private code of your contact.
           </p>
           <div class="personal_code_container">
-            <p class="personal_code_text">
-              Your Code:
-              <span class="personal_code_span" id="personal_code_paragrapth"
-                >Loading ...</span
-              >
+            <p class="personal_code_text" id="personal_code_paragrapth">
+              Loading ...
             </p>
 
             <i
@@ -47,18 +44,34 @@
               <i class="fa-solid fa-phone-volume"></i>
             </button>
           </div>
+          <div>
+            <p class="description_container">
+              Today, there are many technologies for developing web projects. We
+              master all of them, and according to the needs of your project, we
+              use the most appropriate technology for your project. Visit our
+              website to start working together.
+            </p>
+            <a href="https://kmagroute.com/"
+              ><img class="kmagroute" src="./utils/kmagroute-logo-white.png"
+            /></a>
+          </div>
         </div>
-        <div class="chatsection_container">
-          <div class="row bg-danger">
+        <div
+          class="chatsection_container display_none"
+          id="chatsection_container"
+        >
+          <div class="messenger_container">
             <div class="messages_container" id="messages_container"></div>
-            <div class="new_message_container display_none" id="new_message">
+            <div class="new_message_container" id="new_message">
               <input
                 class="new_message_input"
                 id="new_message_input"
-                placeholder="Write Your Message"
+                placeholder="Type Your Message..."
               />
               <button class="send_message_button" id="send_message_button">
-                <i class="fa-solid fa-arrow-right"></i>
+                <i
+                  class="fa-solid fa-arrow-right send_message_button_image"
+                ></i>
               </button>
             </div>
           </div>
@@ -71,7 +84,6 @@
           </div>
           <video
             class="remote_video display_none"
-            muted
             autoplay
             id="remote_video"
           ></video>
@@ -80,19 +92,19 @@
           </div>
           <div class="call_buttons_container display_none" id="call_buttons">
             <button class="call_button_small" id="mic_button">
-              <i class="fa-solid fa-microphone fs-6" id="mic_button_image"></i>
+              <i class="fa-solid fa-microphone" id="mic_button_image"></i>
             </button>
             <button class="call_button_small" id="camera_button">
-              <i class="fa-solid fa-camera fs-6" id="camera_button_image"></i>
+              <i class="fa-solid fa-video" id="camera_button_image"></i>
             </button>
             <button class="call_button_large" id="hang_up_button">
-              <i class="fa-solid fa-phone-slash fs-5"></i>
+              <i class="fa-solid fa-phone-slash"></i>
             </button>
             <button class="call_button_small" id="screen_sharing_button">
-              <i class="fa-solid fa-share-nodes fs-6"></i>
+              <i class="fa-solid fa-camera-rotate"></i>
             </button>
             <button class="call_button_small" id="start_recording_button">
-              <i class="fa-solid fa-record-vinyl fs-6"></i>
+              <i class="fa-solid fa-record-vinyl"></i>
             </button>
           </div>
           <div

@@ -103,6 +103,37 @@ const showVideoCallElements = () => {
   disableDashboard();
 };
 
+const micOnImgClass = 'fa-solid , fa-microphone';
+const micOffImgClass = 'fa-solid , fa-microphone-slash';
+
+export const updateMicButton = (micActive) => {
+  const micButtonImage = document.getElementById('mic_button_image');
+  micButtonImage.classList = micActive ? micOffImgClass : micOnImgClass;
+};
+
+const cameraOnImgClass = 'fa-solid , fa-video';
+const cameraOffImgClass = 'fa-solid , fa-video-slash';
+
+export const updateCameraButton = (cameraActive) => {
+  const cameraButtonImage = document.getElementById('camera_button_image');
+  cameraButtonImage.classList = cameraActive
+    ? cameraOffImgClass
+    : cameraOnImgClass;
+};
+
+export const appendMessage = (message, right = false) => {
+  const messagesContainer = document.getElementById('messages_container');
+  const messageElement = right
+    ? elements.gerRightMessage(message)
+    : elements.getLeftMessage(message);
+  messagesContainer.appendChild(messageElement);
+};
+
+export const clearMessenger = () => {
+  const messagesContainer = document.getElementById('messages_container');
+  messagesContainer.querySelectorAll('*').forEach((n) => n.remove());
+};
+
 const enableDashboard = () => {
   const dashboardBlocker = document.getElementById('dashboard_blur');
   if (dashboardBlocker.classList.contains('display_none')) {
@@ -125,5 +156,12 @@ const hideElement = (element) => {
 const showElement = (element) => {
   if (element.classList.contains('display_none')) {
     element.classList.remove('display_none');
+  }
+};
+
+export const unlockChatSection = () => {
+  const chatSection = document.getElementById('chatsection_container');
+  if (chatSection.classList.contains('display_none')) {
+    chatSection.classList.remove('display_none');
   }
 };

@@ -2,6 +2,7 @@ import * as store from './store.js';
 import * as wss from './wss.js';
 import * as WebRTCHandler from './webRTC.js';
 import * as constants from './constants.js';
+import * as ui from './ui.js';
 
 const socket = io('/');
 wss.registerSocketEvents(socket);
@@ -28,4 +29,47 @@ personalCodeVideoButton.addEventListener('click', () => {
   ).value;
   const callType = constants.callType.VIDEO_PERSONAL_CODE;
   WebRTCHandler.sendPreOffer(callType, calleePersonalCode);
+});
+
+const micButton = document.getElementById('mic_button');
+micButton.addEventListener('click', () => {
+  const localStream = store.getState().localStream;
+  const micEnabled = localStream.getAudioTracks()[0].enabled;
+  localStream.getAudioTracks()[0].enabled = !micEnabled;
+  ui.updateMicButton(micEnabled);
+});
+
+const cameraButton = document.getElementById('camera_button');
+cameraButton.addEventListener('click', () => {
+  const localStream = store.getState().localStream;
+  const cameraEnabled = localStream.getVideoTracks()[0].enabled;
+  localStream.getVideoTracks()[0].enabled = !cameraEnabled;
+  ui.updateCameraButton(cameraEnabled);
+});
+
+const switchForScreenSharingButton = document.getElementById(
+  'screen_sharing_button'
+);
+switchForScreenSharingButton.addEventListener('click', () => {
+  const screenSharingActive = store.getState().screenSharingActive;
+  WebRTCHandler.switchBetweenCameraAndScreenSharing(screenSharingActive);
+});
+
+const newMessageInput = document.getElementById('new_message_input');
+newMessageInput.addEventListener('keydown', (e) => {
+  console.log('change occured');
+  const key = e.key;
+  if (key === 'Enter') {
+    WebRTCHandler.sendMessageUsingDataChannel(e.target.value);
+    ui.appendMessage(e.target.value, true);
+    newMessageInput.value = '';
+  }
+});
+
+const sendMessageButton = document.getElementById('send_message_button');
+sendMessageButton.addEventListener('click', () => {
+  const message = newMessageInput.value;
+  WebRTCHandler.sendMessageUsingDataChannel(message);
+  ui.appendMessage(message, true);
+  newMessageInput.value = '';
 });
