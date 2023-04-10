@@ -20,6 +20,10 @@ export const registerSocketEvents = (socket) => {
     WebRTCHandler.handlePreOfferAnswer(data);
   });
 
+  socket.on('user-hanged-up', () => {
+    WebRTCHandler.handleConnectedUserHangedUp();
+  });
+
   socket.on('webRTC-signals', (data) => {
     switch (data.type) {
       case constants.webRTCSignals.OFFER:
@@ -46,4 +50,8 @@ export const sendPreOfferAnswer = (data) => {
 
 export const sendDataUsingWebRTCSignals = (data) => {
   socketIO.emit('webRTC-signals', data);
+};
+
+export const sendUserHangUp = (data) => {
+  socketIO.emit('user-hanged-up', data);
 };

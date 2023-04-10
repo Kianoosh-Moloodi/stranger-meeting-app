@@ -236,3 +236,31 @@ export const switchBetweenCameraAndScreenSharing = async (
     }
   }
 };
+
+export const handleHangUp = () => {
+  console.log('finishing the call');
+  const data = {
+    connectedUserSocketId: connectedUserDetails.socketId,
+  };
+  wss.sendUserHangUp(data);
+  closePeerConnectionAndResetState();
+};
+
+export const handleConnectedUserHangedUp = () => {
+  console.log('connected user hanged up');
+};
+
+const closePeerConnectionAndResetState = () => {
+  if (peerConnection) {
+    peerConnection.close();
+    peerConnection = null;
+  }
+  if (
+    connectedUserDetails.callType === constants.callType.VIDEO_PERSONAL_CODE
+  ) {
+    store.getState().localStream.getVideoTracks()[0].enabled = true;
+    store.getState().localStream.getAudioTracks()[0].enabled = true;
+    ui.updateUIAfterHangUp(connectedUserDetails.callType);
+    connectedUserDetails = null;
+  }
+};

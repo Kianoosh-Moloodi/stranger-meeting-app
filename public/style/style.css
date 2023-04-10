@@ -152,7 +152,7 @@ input:focus {
 
 .personal_code_text {
   background-color: azure;
-  padding: 9px 0 9px 0;
+  padding: 10px 0 10px 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -279,23 +279,24 @@ input[class='personal_code_input'] {
 
 .video_recording_buttons_container {
   position: absolute;
-  width: 165px;
+  width: 100px;
   height: 30px;
   background: rgba(255, 255, 255, 0.137);
   border-radius: 10px;
   backdrop-filter: blur(60px);
-  right: 15px;
+  right: 12px;
+  top: 170px;
   padding: 10px 10px;
-  top: 220px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 12px;
 }
 
 .call_button_small {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
+  font-size: 16px;
   border-radius: 50px;
   background-color: rgba(255, 255, 255, 0.315);
   transition: 0.3s;
@@ -306,8 +307,9 @@ input[class='personal_code_input'] {
 }
 
 .call_button_large {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
+  font-size: 18px;
   border-radius: 75px;
   background-color: rgba(255, 0, 0, 0.288);
   transition: 0.3s;
@@ -319,16 +321,17 @@ input[class='personal_code_input'] {
 }
 
 .record_button {
-  width: 30px;
-  height: 30px;
-  font-size: 11px;
+  width: 38px;
+  height: 38px;
+  font-size: 16px;
   border-radius: 75px;
   background-color: rgba(255, 255, 255, 0.288);
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .record_button:hover {
-  background-color: white;
+  background-color: yellow;
 }
 
 .display_none {
@@ -405,11 +408,11 @@ input[class='personal_code_input'] {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.25);
+    transform: scale(1.2);
     color: red;
   }
   100% {
-    transform: scale(1.4);
+    transform: scale(1.3);
   }
 }
 
@@ -420,7 +423,7 @@ input[class='personal_code_input'] {
 .messenger_container {
   margin-top: 20px;
   height: 95vh;
-  background-color: azure;
+  background-color: antiquewhite;
   display: flex;
   flex-direction: column;
   border-radius: 5px;
@@ -482,6 +485,7 @@ input[class='new_message_input'] {
   color: #545c68;
   min-width: 60px;
   text-align: center;
+  font-weight: bold;
 }
 
 .message_right_container {
@@ -500,6 +504,7 @@ input[class='new_message_input'] {
   color: #ffffff;
   min-width: 60px;
   text-align: center;
+  font-weight: bold;
 }
 
 .kmagroute {

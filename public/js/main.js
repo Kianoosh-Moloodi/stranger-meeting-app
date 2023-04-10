@@ -3,6 +3,7 @@ import * as wss from './wss.js';
 import * as WebRTCHandler from './webRTC.js';
 import * as constants from './constants.js';
 import * as ui from './ui.js';
+import * as recordingUtils from './recordingUtils.js';
 
 const socket = io('/');
 wss.registerSocketEvents(socket);
@@ -72,4 +73,35 @@ sendMessageButton.addEventListener('click', () => {
   WebRTCHandler.sendMessageUsingDataChannel(message);
   ui.appendMessage(message, true);
   newMessageInput.value = '';
+});
+
+const startRecordingButton = document.getElementById('start_recording_button');
+startRecordingButton.addEventListener('click', () => {
+  recordingUtils.startRecording();
+  ui.showRecordingPanel();
+});
+
+const stopRecordingButton = document.getElementById('stop_recording_button');
+stopRecordingButton.addEventListener('click', () => {
+  recordingUtils.stopRecording();
+  ui.resetRecordingButtons();
+});
+
+const pauseRecordingButton = document.getElementById('pause_recording_button');
+pauseRecordingButton.addEventListener('click', () => {
+  recordingUtils.pauseRecording();
+  ui.switchRecordingsButtons(true);
+});
+
+const resumeRecordingButton = document.getElementById(
+  'resume_recording_button'
+);
+resumeRecordingButton.addEventListener('click', () => {
+  recordingUtils.resumeRecording();
+  ui.switchRecordingsButtons();
+});
+
+const hangUpButton = document.getElementById('hang_up_button');
+hangUpButton.addEventListener('click', () => {
+  WebRTCHandler.handleHangUp();
 });
