@@ -16,6 +16,13 @@ export const updateLocalVideo = (stream) => {
   });
 };
 
+export const showVideoCallButtons = () => {
+  const personalCodeInputContainer = document.getElementById(
+    'personal_code_input_container'
+  );
+  showElement(personalCodeInputContainer);
+};
+
 export const updateRemoteVideo = (stream) => {
   const remoteVideo = document.getElementById('remote_video');
   remoteVideo.srcObject = stream;
@@ -212,3 +219,4 @@ export const unlockChatSection = () => {
     chatSection.classList.remove('display_none');
   }
 };
+

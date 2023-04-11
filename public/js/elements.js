@@ -15,7 +15,7 @@ export const getIncomingCallDialog = (
 
   const title = document.createElement('p');
   title.classList.add('dialog_title');
-  title.innerHTML = `<div><p>Incoming Call From</p><p>${callTypeInfo}</p><div/>`;
+  title.innerHTML = `<p>Incoming Call</p>`;
 
   const buttonContainer = document.createElement('div');
   buttonContainer.classList.add('dialog_button_container');
@@ -69,7 +69,9 @@ export const getCallingDialog = (rejectCallHandler) => {
 
   dialogContent.appendChild(title);
   dialogContent.appendChild(buttonContainer);
-
+  hangUpCallButton.addEventListener('click', () => {
+    rejectCallHandler();
+  });
   return dialog;
 };
 

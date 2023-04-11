@@ -382,20 +382,18 @@ input[class='personal_code_input'] {
 .dialog_accept_call_button {
   width: 180px;
   height: 55px;
-  background: linear-gradient(180deg, #00c920 0%, #2fe24b 100%);
-  box-shadow: 0px 2px 42px 10px rgba(47, 226, 75, 0.15);
+  background: green;
   border-radius: 15px;
-  transition: 0.5s;
+  color: #ffffff;
   cursor: pointer;
 }
 
 .dialog_reject_call_button {
   width: 180px;
   height: 55px;
-  background: linear-gradient(180deg, #ff3b3b 0%, #ff6262 100%);
-  box-shadow: 0px 2px 42px 10px rgba(255, 59, 59, 0.15);
+  background: red;
   border-radius: 15px;
-  transition: 0.5s;
+  color: #ffffff;
   cursor: pointer;
 }
 
